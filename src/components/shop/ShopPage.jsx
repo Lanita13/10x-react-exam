@@ -1,17 +1,26 @@
 import {useState} from "react";
+import redhat from "../../assets/img/Red-Hat.png";
+import sleevecoat from "../../assets/img/Sleeve-Coat.png";
+import metalshirt from "../../assets/img/Metal-Shirt.png";
+import denimhat from "../../assets/img/Denim-Hat.png";
+import minitop from "../../assets/img/Mini-Top.png";
+import oversizedjacket from "../../assets/img/Oversized-Jacket.png";
+import checkedsunglasses  from "../../assets/img/Checked-Sunglasses.png";
+import exclusivejacket from "../../assets/img/Exclusive-Jacket.png";
+import blackdress  from "../../assets/img/Black-Dress.png";
 
 
 function ShopPage() {
   const products = [
-    { id: 1, name: "Beautiful Red Hat", price: "$50.00", image: "/images/hat-red.jpg" },
-    { id: 2, name: "Loose Metal Shirt", price: "$70.00", image: "/images/shirt-metal.jpg" },
-    { id: 3, name: "Long Sleeve Coat", price: "$95.00", image: "/images/coat-long.jpg" },
-    { id: 4, name: "Sexy Denim Hat", price: "$25.00", image: "/images/hat-denim.jpg" },
-    { id: 5, name: "Linen Mini Top", price: "$29.00", image: "/images/top-linen.jpg" },
-    { id: 6, name: "Oversized Jacket", price: "$110.00", image: "/images/jacket-red.jpg" },
-    { id: 7, name: "Checked Sunglasses", price: "$20.00", image: "/images/sunglasses.jpg" },
-    { id: 8, name: "Exclusive Jacket", price: "$80.00", image: "/images/jacket-black.jpg" },
-    { id: 9, name: "Dotted Black Dress", price: "$65.00", image: "/images/dress-black.jpg" },
+    { id: 1, name: "Beautiful Red Hat", price: "$50.00", image: redhat},
+    { id: 2, name: "Loose Metal Shirt", price: "$70.00", image: sleevecoat},
+    { id: 3, name: "Long Sleeve Coat", price: "$95.00", image: metalshirt},
+    { id: 4, name: "Sexy Denim Hat", price: "$25.00", image: denimhat},
+    { id: 5, name: "Linen Mini Top", price: "$29.00", image: minitop},
+    { id: 6, name: "Oversized Jacket", price: "$110.00", image: oversizedjacket },
+    { id: 7, name: "Checked Sunglasses", price: "$20.00", image: checkedsunglasses },
+    { id: 8, name: "Exclusive Jacket", price: "$80.00", image: exclusivejacket },
+    { id: 9, name: "Dotted Black Dress", price: "$65.00", image: blackdress },
   ];
 
   return (
