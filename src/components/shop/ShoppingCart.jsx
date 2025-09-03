@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../common/Logo";
 import { Search, User, Star, ShoppingCart as CartIcon } from "lucide-react";
 
@@ -7,6 +7,7 @@ import blackdress from "../../assets/img/Black-Dress.png";
 
 export default function ShoppingCart() {
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate(); 
 
   const handleIncrease = () => setQuantity(quantity + 1);
   const handleDecrease = () => {
@@ -116,9 +117,15 @@ export default function ShoppingCart() {
             ${(14.9 * quantity).toFixed(2)}
           </span>
         </p>
-        <button className="bg-black text-white px-20 py-3 rounded-md shadow-md">
+
+        {/* Checkout → redirect */}
+        <button
+          onClick={() => navigate("/checkout")}
+          className="bg-black text-white px-20 py-3 rounded-md shadow-md"
+        >
           Checkout
         </button>
+
         <button className="text-sm underline">View Cart</button>
       </div>
     </div>

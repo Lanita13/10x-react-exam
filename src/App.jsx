@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import CheckoutPage from "./components/shop/CheckoutPage";
 
 const LoginPage = lazy(() => import("./components/auth&registration/LoginPage"));
 const RegisterPage = lazy(() => import("./components/auth&registration/RegisterPage"));
@@ -13,6 +14,7 @@ const NewsletterSection = lazy(() => import("./components/homepage/NewsletterSec
 const ShopPage = lazy(() => import("./components/shop/ShopPage"));
 const ProductDetail = lazy(() => import("./components/shop/ProductDetail"));
 const ShoppingCart = lazy(() => import("./components/shop/ShoppingCart"));
+const Checkout = lazy (() => import ("./components/shop/CheckoutPage"));
 
 function App() {
   return (
@@ -43,8 +45,11 @@ function App() {
           <Route path="/cart" element={
             <>
               <ShoppingCart />
-             
+            </>} />
 
+            <Route path="/checkout" element={
+            <>
+              <CheckoutPage />
             </>} />
 
 
