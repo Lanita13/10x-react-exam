@@ -59,7 +59,7 @@ const products = [
         id: 6,
         name: "White Dress",
         image: "https://pikaso.cdnpk.net/private/production/2067580633/upload.png?token=exp=1777939200~hmac=df6f0bef38a7a32ea7c8e18132f68a928db20fd1032a00e02d2b4ef41581455c",
-        price: 95.5,
+        price: 65,
         rating: 5,
         reviews: 411,
         status: "Almost Sold Out",
