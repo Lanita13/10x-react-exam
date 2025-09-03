@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState } from "react"; 
+import { Link } from "react-router-dom";
 import { Search, User, Star, ShoppingCart } from "lucide-react";
 
 import redhat from "../../assets/img/Red-Hat.png";
@@ -18,169 +19,21 @@ function ShopPage() {
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedCollection, setSelectedCollection] = useState(null);
   const [selectedTag, setSelectedTag] = useState(null);
-
-  // ✅ pagination-ის state
   const [currentPage, setCurrentPage] = useState(1);
 
   const products = [
-    {
-      id: 1,
-      name: "Knotted Red Hat",
-      price: 20,
-      oldPrice: 25,
-      image: redhat,
-      sizes: ["S", "M"],
-      colors: ["bg-red-500", "bg-black", "bg-gray-400"],
-      brand: "Hermes",
-      collection: ["New Arrivals", "All"],
-      tags: ["Style", "Trending"],
-    },
-    {
-      id: 2,
-      name: "Loose Metal Shirt",
-      price: 70,
-      image: sleevecoat,
-      sizes: ["S", "L"],
-      colors: ["bg-gray-700", "bg-green-600"],
-      brand: "Prada",
-      collection: ["Best Sellers", "All"],
-      tags: ["Vintage", "Summer"],
-    },
-    {
-      id: 3,
-      name: "Long Sleeve Coat",
-      price: 95,
-      image: metalshirt,
-      sizes: ["L", "M"],
-      colors: ["bg-black", "bg-yellow-500"],
-      brand: "Gucci",
-      collection: ["Best Sellers", "All"],
-      tags: ["Modern", "Winter"],
-    },
-    {
-      id: 4,
-      name: "Sexy Denim Hat",
-      price: 25,
-      image: denimhat,
-      sizes: ["S", "M"],
-      colors: ["bg-blue-500", "bg-black"],
-      brand: "Adidas",
-      collection: ["Sale", "All"],
-      tags: ["Style", "Summer"],
-    },
-    {
-      id: 5,
-      name: "Linen Plain Top",
-      price: 150,
-      image: minitop,
-      sizes: ["XS", "XL"],
-      colors: ["bg-pink-500", "bg-yellow-400"],
-      brand: "Adidas",
-      collection: ["Sale", "All"],
-      tags: ["Style", "Summer"],
-    },
-    {
-      id: 6,
-      name: "Oversized Jacket",
-      price: 100,
-      oldPrice: "$140.00",
-      image: oversizedjacket,
-      sizes: ["S", "XS"],
-      colors: ["bg-black", "bg-gray-400"],
-      brand: "Adidas",
-      collection: ["Sale", "All"],
-      tags: ["Trending", "Vintage"],
-    },
-    {
-      id: 7,
-      name: "Checked Sunglasses",
-      price: 80,
-      image: checkedsunglasses,
-      sizes: ["XS", "M"],
-      colors: ["bg-black", "bg-red-400"],
-      brand: "Adidas",
-      collection: ["Sale", "All"],
-      tags: ["Vintage", "Exclusive"],
-    },
-    {
-      id: 8,
-      name: "Exclusive Jacket",
-      price: 120,
-      image: exclusivejacket,
-      sizes: ["S", "M", "L"],
-      colors: ["bg-black", "bg-purple-500"],
-      brand: "Adidas",
-      collection: ["Sale", "All"],
-      tags: ["Trending", "Style"],
-    },
-    {
-      id: 9,
-      name: "Dotted Black Dress",
-      price: 115,
-      image: blackdress,
-      sizes: ["L", "XL"],
-      colors: ["bg-black", "bg-gray-400", "bg-blue-400"],
-      brand: "Adidas",
-      collection: ["Sale", "All"],
-      tags: ["Winter", "Exclusive"],
-    },
-     {
-      id: 10,
-      name: "Long Sleeve Coat",
-      price: 95,
-      image: metalshirt,
-      sizes: ["L", "M"],
-      colors: ["bg-black", "bg-yellow-500"],
-      brand: "Gucci",
-      collection: ["Best Sellers", "All"],
-      tags: ["Modern", "Winter"],
-    },
-    {
-      id: 11,
-      name: "Sexy Denim Hat",
-      price: 25,
-      image: denimhat,
-      sizes: ["S", "M"],
-      colors: ["bg-blue-500", "bg-black"],
-      brand: "Adidas",
-      collection: ["Sale", "All"],
-      tags: ["Style", "Summer"],
-    },
-    {
-      id: 12,
-      name: "Linen Plain Top",
-      price: 150,
-      image: minitop,
-      sizes: ["XS", "XL"],
-      colors: ["bg-pink-500", "bg-yellow-400"],
-      brand: "Adidas",
-      collection: ["Sale", "All"],
-      tags: ["Style", "Summer"],
-    },
-
-    {
-      id: 13,
-      name: "Knotted Red Hat",
-      price: 20,
-      oldPrice: 25,
-      image: redhat,
-      sizes: ["S", "M"],
-      colors: ["bg-red-500", "bg-black", "bg-gray-400"],
-      brand: "Hermes",
-      collection: ["New Arrivals", "All"],
-      tags: ["Style", "Trending"],
-    },
-    {
-      id: 14,
-      name: "Loose Metal Shirt",
-      price: 70,
-      image: sleevecoat,
-      sizes: ["S", "L"],
-      colors: ["bg-gray-700", "bg-green-600"],
-      brand: "Prada",
-      collection: ["Best Sellers", "All"],
-      tags: ["Vintage", "Summer"],
-    },
+    { id: 1, name: "Knotted Red Hat", price: 20, oldPrice: 25, image: redhat, sizes: ["S", "M"], colors: ["bg-red-500", "bg-black", "bg-gray-400"], brand: "Hermes", collection: ["New Arrivals", "All"], tags: ["Style", "Trending"] },
+    { id: 2, name: "Loose Metal Shirt", price: 70, image: sleevecoat, sizes: ["S", "L"], colors: ["bg-gray-700", "bg-green-600"], brand: "Prada", collection: ["Best Sellers", "All"], tags: ["Vintage", "Summer"] },
+    { id: 3, name: "Long Sleeve Coat", price: 95, image: metalshirt, sizes: ["L", "M"], colors: ["bg-black", "bg-yellow-500"], brand: "Gucci", collection: ["Best Sellers", "All"], tags: ["Modern", "Winter"] },
+    { id: 4, name: "Sexy Denim Hat", price: 25, image: denimhat, sizes: ["S", "M"], colors: ["bg-blue-500", "bg-black"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Style", "Summer"] },
+    { id: 5, name: "Linen Plain Top", price: 150, image: minitop, sizes: ["XS", "XL"], colors: ["bg-pink-500", "bg-yellow-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Style", "Summer"] },
+    { id: 6, name: "Oversized Jacket", price: 100, oldPrice: "$140.00", image: oversizedjacket, sizes: ["S", "XS"], colors: ["bg-black", "bg-gray-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Trending", "Vintage"] },
+    { id: 7, name: "Checked Sunglasses", price: 80, image: checkedsunglasses, sizes: ["XS", "M"], colors: ["bg-black", "bg-red-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Vintage", "Exclusive"] },
+    { id: 8, name: "Exclusive Jacket", price: 120, image: exclusivejacket, sizes: ["S", "M", "L"], colors: ["bg-black", "bg-purple-500"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Trending", "Style"] },
+    { id: 9, name: "Dotted Black Dress", price: 115, image: blackdress, sizes: ["L", "XL"], colors: ["bg-black", "bg-gray-400", "bg-blue-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Winter", "Exclusive"] },
+    { id: 10, name: "Long Sleeve Coat", price: 95, image: metalshirt, sizes: ["L", "M"], colors: ["bg-black", "bg-yellow-500"], brand: "Gucci", collection: ["Best Sellers", "All"], tags: ["Modern", "Winter"] },
+    { id: 11, name: "Sexy Denim Hat", price: 25, image: denimhat, sizes: ["S", "M"], colors: ["bg-blue-500", "bg-black"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Style", "Summer"] },
+    { id: 12, name: "Linen Plain Top", price: 150, image: minitop, sizes: ["XS", "XL"], colors: ["bg-pink-500", "bg-yellow-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Style", "Summer"] },
   ];
 
   const filteredProducts = products.filter((product) => {
@@ -192,37 +45,22 @@ function ShopPage() {
         (selectedPrice === "150-200" && product.price > 150 && product.price <= 200)
       : true;
     const brandMatch = selectedBrand ? product.brand === selectedBrand : true;
-    const collectionMatch = selectedCollection
-      ? product.collection.includes(selectedCollection)
-      : true;
+    const collectionMatch = selectedCollection ? product.collection.includes(selectedCollection) : true;
     const tagMatch = selectedTag ? product.tags.includes(selectedTag) : true;
-
     return colorMatch && priceMatch && brandMatch && collectionMatch && tagMatch;
   });
 
-  // Pagination
   const productsPerPage = 6;
   const indexOfLast = currentPage * productsPerPage;
   const indexOfFirst = indexOfLast - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
-  const colors = [
-    "bg-red-500",
-    "bg-blue-500",
-    "bg-green-500",
-    "bg-yellow-500",
-    "bg-pink-500",
-    "bg-black",
-    "bg-gray-400",
-    "bg-purple-500",
-    "bg-orange-500",
-  ];
-
-  const prices = ["0-50", "50-100", "100-150", "150-200"];
-  const brands = ["Hermes", "Prada", "Gucci", "Adidas"];
-  const collections = ["All", "Best Sellers", "New Arrivals", "Sale"];
-  const tags = ["Style", "Vintage", "Modern", "New", "Trending", "Summer", "Winter", "Exclusive"];
+  const colors = ["bg-red-500","bg-blue-500","bg-green-500","bg-yellow-500","bg-pink-500","bg-black","bg-gray-400","bg-purple-500","bg-orange-500"];
+  const prices = ["0-50","50-100","100-150","150-200"];
+  const brands = ["Hermes","Prada","Gucci","Adidas"];
+  const collections = ["All","Best Sellers","New Arrivals","Sale"];
+  const tags = ["Style","Vintage","Modern","New","Trending","Summer","Winter","Exclusive"];
 
   return (
     <div className="font-sans">
@@ -261,9 +99,7 @@ function ShopPage() {
               {colors.map((color) => (
                 <div
                   key={color}
-                  className={`${color} w-6 h-6 rounded-full border cursor-pointer ${
-                    selectedColor === color ? "ring-2 ring-black" : ""
-                  }`}
+                  className={`${color} w-6 h-6 rounded-full border cursor-pointer ${selectedColor === color ? "ring-2 ring-black" : ""}`}
                   onClick={() => setSelectedColor(selectedColor === color ? null : color)}
                 />
               ))}
@@ -277,18 +113,10 @@ function ShopPage() {
               {prices.map((price) => (
                 <button
                   key={price}
-                  className={`text-left px-2 py-1 cursor-pointer ${
-                    selectedPrice === price ? "bg-gray-300" : ""
-                  }`}
+                  className={`text-left px-2 py-1 cursor-pointer ${selectedPrice === price ? "bg-gray-300" : ""}`}
                   onClick={() => setSelectedPrice(selectedPrice === price ? null : price)}
                 >
-                  {price === "0-50"
-                    ? "$0–$50"
-                    : price === "50-100"
-                    ? "$50–$100"
-                    : price === "100-150"
-                    ? "$100–$150"
-                    : "$150–$200"}
+                  {price === "0-50" ? "$0–$50" : price === "50-100" ? "$50–$100" : price === "100-150" ? "$100–$150" : "$150–$200"}
                 </button>
               ))}
             </div>
@@ -301,9 +129,7 @@ function ShopPage() {
               {brands.map((brand) => (
                 <button
                   key={brand}
-                  className={`text-left px-2 py-1 cursor-pointer ${
-                    selectedBrand === brand ? "bg-gray-300" : ""
-                  }`}
+                  className={`text-left px-2 py-1 cursor-pointer ${selectedBrand === brand ? "bg-gray-300" : ""}`}
                   onClick={() => setSelectedBrand(selectedBrand === brand ? null : brand)}
                 >
                   {brand}
@@ -319,12 +145,8 @@ function ShopPage() {
               {collections.map((col) => (
                 <button
                   key={col}
-                  className={`text-left px-2 py-1 cursor-pointer ${
-                    selectedCollection === col ? "bg-gray-300" : ""
-                  }`}
-                  onClick={() =>
-                    setSelectedCollection(selectedCollection === col ? null : col)
-                  }
+                  className={`text-left px-2 py-1 cursor-pointer ${selectedCollection === col ? "bg-gray-300" : ""}`}
+                  onClick={() => setSelectedCollection(selectedCollection === col ? null : col)}
                 >
                   {col}
                 </button>
@@ -339,9 +161,7 @@ function ShopPage() {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className={`px-2 py-1 cursor-pointer  ${
-                    selectedTag === tag ? "bg-gray-300" : "text-gray-600"
-                  }`}
+                  className={`px-2 py-1 cursor-pointer ${selectedTag === tag ? "bg-gray-300" : "text-gray-600"}`}
                   onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
                 >
                   {tag}
@@ -351,8 +171,6 @@ function ShopPage() {
           </div>
         </aside>
 
-        
-
         {/* Product Grid */}
         <main className="w-3/4">
           <div className="flex justify-between items-center mb-6">
@@ -361,9 +179,10 @@ function ShopPage() {
 
           <div className="grid grid-cols-3 gap-6">
             {currentProducts.map((product) => (
-              <div
+              <Link
                 key={product.id}
-                className="rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+                to={`/product/${product.id}`}
+                className="rounded-lg overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
               >
                 <img
                   src={product.image}
@@ -386,7 +205,7 @@ function ShopPage() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -395,9 +214,7 @@ function ShopPage() {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
-                className={`px-3 py-1 border rounded cursor-pointer ${
-                  currentPage === page ? "bg-gray-800 text-white" : "bg-white"
-                }`}
+                className={`px-3 py-1 border rounded cursor-pointer ${currentPage === page ? "bg-gray-800 text-white" : "bg-white"}`}
                 onClick={() => setCurrentPage(page)}
               >
                 {page}

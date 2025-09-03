@@ -11,8 +11,8 @@ const HomePage = lazy(() => import("./components/homepage/HomePage"));
 const NewArrivals = lazy(() => import("./components/homepage/NewArrivals"));
 const NewsletterSection = lazy(() => import("./components/homepage/NewsletterSection"));
 const ShopPage = lazy(() => import("./components/shop/ShopPage"));
-const ProductDetail = lazy(() => import("./components/shop/ProductDetail"))
-
+const ProductDetail = lazy(() => import("./components/shop/ProductDetail"));
+const ShoppingCart = lazy(() => import("./components/shop/ShoppingCart"));
 
 function App() {
   return (
@@ -34,10 +34,19 @@ function App() {
 
           <Route path="/shop" element={
             <>
-            <ShopPage />
-            <NewsletterSection />
+              <ShopPage />
+
             </>} />
+
+
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={
+            <>
+              <ShoppingCart />
+             
+
+            </>} />
+
 
           <Route
             path="*"
