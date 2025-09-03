@@ -2,14 +2,14 @@ import { useState } from "react";
 
 function NewsletterSection() {
   return (
-    <section className="relative bg-white py-20">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-10 px-6">
+    <section className="relative  bg-white py-20">
+      <div className="container  mx-auto flex flex-col md:flex-row items-center justify-center justify-between gap-[24px] px-6">
         {/* Left Image */}
         <div className="flex-shrink-0">
           <img
             src="https://pikaso.cdnpk.net/private/production/1975024058/upload.png?token=exp=1777939200~hmac=144080876827f0ee7871e288c75fbbb46fb5192e4a19d386c5c776390711442f" 
             alt="Left Model"
-            className="h-[450px] object-cover"
+            className="h-[600px]  w-[350px] object-cover rounded-lg"
           />
         </div>
 
@@ -42,7 +42,7 @@ function NewsletterSection() {
           <img
             src="https://pikaso.cdnpk.net/private/production/2275254113/enhanced-optimized.jpg?token=exp=1777939200~hmac=91515acf8e0aef16374210a8e92ff22bb426828f9f12d76f2473d0a3cd402e98&preview=1" 
             alt="Right Model"
-            className="h-[450px] object-cover"
+            className="h-[600px]  w-[350px] object-cover rounded-lg"
           />
         </div>
       </div>

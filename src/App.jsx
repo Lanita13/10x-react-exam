@@ -11,6 +11,7 @@ const HomePage = lazy(() => import("./components/homepage/HomePage"));
 const NewArrivals = lazy(() => import("./components/homepage/NewArrivals"));
 const NewsletterSection = lazy(() => import("./components/homepage/NewsletterSection"));
 const ShopPage = lazy(() => import("./components/shop/ShopPage"));
+const ProductDetail = lazy(() => import("./components/shop/ProductDetail"))
 
 
 function App() {
@@ -31,7 +32,12 @@ function App() {
             </>
           } />
 
-          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop" element={
+            <>
+            <ShopPage />
+            <NewsletterSection />
+            </>} />
+          <Route path="/product/:id" element={<ProductDetail />} />
 
           <Route
             path="*"
