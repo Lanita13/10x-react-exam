@@ -30,6 +30,9 @@ export default function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate(); // დავამატეთ useNavigate ჰუკის ინიციალიზაცია
 
+
+
+
     if (!product) return <p className="p-10">Product not found</p>;
 
     const handleIncrease = () => {
@@ -41,12 +44,18 @@ export default function ProductDetail() {
     };
 
     const handleAddToCart = () => {
-        // აქ შეგიძლიათ დაამატოთ ლოგიკა პროდუქტის კალათაში დასამატებლად
-        // ...
-
-        // შემდეგ გადავდივართ Shopping Cart გვერდზე
-        navigate('/cart');
+    const cartItem = {
+        id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity
     };
+
+    // გადავდივართ Cart-ზე და პარალელურად ვაგზავნით მონაცემს state-ით
+    navigate("/cart", { state: { cartItem } });
+};
+
 
     return (
         <div className="grid grid-cols-2 gap-8 p-10">

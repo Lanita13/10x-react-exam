@@ -1,6 +1,6 @@
 import { useState } from "react"; 
 import { Link } from "react-router-dom";
-import { Search, User, Star, ShoppingCart } from "lucide-react";
+
 
 import redhat from "../../assets/img/Red-Hat.png";
 import sleevecoat from "../../assets/img/Sleeve-Coat.png";
@@ -11,7 +11,7 @@ import oversizedjacket from "../../assets/img/Oversized-Jacket.png";
 import checkedsunglasses from "../../assets/img/Checked-Sunglasses.png";
 import exclusivejacket from "../../assets/img/Exclusive-Jacket.png";
 import blackdress from "../../assets/img/Black-Dress.png";
-import Logo from "../common/Logo";
+
 
 function ShopPage() {
   const [selectedColor, setSelectedColor] = useState(null);
@@ -65,21 +65,7 @@ function ShopPage() {
   return (
     <div className="font-sans">
       {/* Header */}
-      <header className="flex justify-between items-center px-10 py-5 border-b">
-        <Logo />
-        <nav className="flex gap-8 text-gray-700">
-          <a href="#">Home</a>
-          <a href="#">Shop</a>
-          <a href="#">Products</a>
-          <a href="#">Pages</a>
-        </nav>
-        <div className="flex gap-2">
-          <Search className="w-5 h-5 cursor-pointer" />
-          <User className="w-5 h-5 cursor-pointer" />
-          <Star className="w-5 h-5 cursor-pointer" />
-          <ShoppingCart className="w-5 h-5 cursor-pointer" />
-        </div>
-      </header>
+  
 
       {/* Breadcrumb */}
       <div className="px-10 py-4 text-gray-500">
@@ -87,14 +73,14 @@ function ShopPage() {
       </div>
 
       {/* Content */}
-      <div className="flex px-10 py-10">
+      <div className="flex  px-10 py-10">
         {/* Sidebar */}
         <aside className="w-1/4 pr-8">
-          <h2 className="font-bold text-lg mb-4">Filters</h2>
+          <h2 className="flex flex-wrap font-bold text-lg mb-4">Filters</h2>
 
           {/* Colors */}
           <div className="mb-6">
-            <h3 className="font-semibold mb-2">Colors</h3>
+            <h3 className=" flex flex-wrap font-semibold mb-2">Colors</h3>
             <div className="flex flex-wrap gap-2">
               {colors.map((color) => (
                 <div
@@ -108,7 +94,7 @@ function ShopPage() {
 
           {/* Prices */}
           <div className="mb-6">
-            <h3 className="font-semibold mb-2">Prices</h3>
+            <h3 className="flex flex-wrap font-semibold mb-2">Prices</h3>
             <div className="flex flex-col gap-1">
               {prices.map((price) => (
                 <button
@@ -124,8 +110,8 @@ function ShopPage() {
 
           {/* Brands */}
           <div className="mb-6">
-            <h3 className="font-semibold mb-2">Brands</h3>
-            <div className="flex flex-col gap-1">
+            <h3 className="flex flex-wrap font-semibold mb-2">Brands</h3>
+            <div className="flex flex-col   gap-1">
               {brands.map((brand) => (
                 <button
                   key={brand}
@@ -140,7 +126,7 @@ function ShopPage() {
 
           {/* Collections */}
           <div className="mb-6">
-            <h3 className="font-semibold mb-2">Collections</h3>
+            <h3 className="flex flex-wrap font-semibold mb-2">Collections</h3>
             <div className="flex flex-col gap-1">
               {collections.map((col) => (
                 <button
@@ -156,7 +142,7 @@ function ShopPage() {
 
           {/* Tags */}
           <div>
-            <h3 className="font-semibold mb-2">Tags</h3>
+            <h3 className="flex flex-wrap font-semibold mb-2">Tags</h3>
             <div className="flex flex-wrap gap-2 text-sm">
               {tags.map((tag) => (
                 <span
@@ -174,7 +160,7 @@ function ShopPage() {
         {/* Product Grid */}
         <main className="w-3/4">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold">Products</h2>
+            <h2 className=" flex flex-wrap text-xl font-bold">Products</h2>
           </div>
 
           <div className="grid grid-cols-3 gap-6">

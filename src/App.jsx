@@ -8,17 +8,20 @@ const RegisterPage = lazy(() => import("./components/auth&registration/RegisterP
 const ForgotPasswordPage = lazy(() => import("./components/auth&registration/ForgotPasswordPage"));
 const ConfirmationCode = lazy(() => import("./components/auth&registration/ConfirmationCode"));
 const NewPassword = lazy(() => import("./components/auth&registration/NewPassword"));
+const Header = lazy(() => import("./components/common/Header"))
 const HomePage = lazy(() => import("./components/homepage/HomePage"));
 const NewArrivals = lazy(() => import("./components/homepage/NewArrivals"));
 const NewsletterSection = lazy(() => import("./components/homepage/NewsletterSection"));
 const ShopPage = lazy(() => import("./components/shop/ShopPage"));
 const ProductDetail = lazy(() => import("./components/shop/ProductDetail"));
 const ShoppingCart = lazy(() => import("./components/shop/ShoppingCart"));
-const Checkout = lazy (() => import ("./components/shop/CheckoutPage"));
+const Checkout = lazy(() => import("./components/shop/CheckoutPage"));
+const Footer = lazy (() => import("./components/common/Footer"));
 
 function App() {
   return (
     <Router>
+      
       <Suspense fallback={<div className="text-center mt-20">Loading...</div>}>
         <Routes>
           <Route path="/" element={<LoginPage />} />
@@ -36,19 +39,26 @@ function App() {
 
           <Route path="/shop" element={
             <>
+              <Header />
               <ShopPage />
-
             </>} />
 
 
-          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/product/:id" element={
+            <>
+              <Header />
+              <ProductDetail />
+            </>
+          } />
           <Route path="/cart" element={
             <>
+              <Header />
               <ShoppingCart />
             </>} />
 
-            <Route path="/checkout" element={
+          <Route path="/checkout" element={
             <>
+              <Header />
               <CheckoutPage />
             </>} />
 
@@ -62,7 +72,9 @@ function App() {
             }
           />
         </Routes>
+         <Footer/>
       </Suspense>
+      
     </Router>
   );
 }
