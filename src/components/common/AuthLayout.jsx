@@ -1,11 +1,13 @@
+// src/common/AuthLayout.jsx
+
 import Logo from "./Logo";
 
 export default function AuthLayout({ children, title, image }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
         
-        {/* Left Image */}
+        {/* მარცხენა მხარე: სურათი */}
         <div className="hidden md:block">
           <img
             src={image}
@@ -14,15 +16,20 @@ export default function AuthLayout({ children, title, image }) {
           />
         </div>
 
-        {/* Right Content */}
+        {/* მარჯვენა მხარე: კონტენტი */}
         <div className="p-10 flex flex-col justify-center">
-          <Logo />
+          <div className="flex justify-center mb-6">
+            <Logo />
+          </div>
+
           {title && (
-            <p className="text-black-500 font-bold text-center text-xl mt-20 mb-6">
+            <p className="text-gray-800 font-bold text-center text-2xl mt-4 mb-8">
               {title}
             </p>
           )}
+
           {children}
+
           <p className="text-xs text-gray-400 mt-10 text-center">
             FASCO Terms & Conditions
           </p>

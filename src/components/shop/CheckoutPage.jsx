@@ -1,161 +1,281 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
-import { CreditCard } from "lucide-react";
+import { CreditCard, Mail, User, MapPin, Globe, Lock, Calendar, Clipboard, CheckCircle } from "lucide-react";
 
+// Reusable InputField Component
+const InputField = ({ type, placeholder, name, value, onChange, icon: Icon, className = "" }) => {
+    const baseClasses = "w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-black focus:outline-none transition-colors duration-200";
+    const iconClasses = "absolute left-4 top-1/2 -translate-y-1/2 text-gray-400";
 
+    return (
+        <div className="relative">
+            {Icon && <Icon className={iconClasses} size={20} />}
+            <input
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                className={`${baseClasses} ${Icon ? 'pl-12' : ''} ${className}`}
+            />
+        </div>
+    );
+};
+
+// Reusable SectionHeader Component
+const SectionHeader = ({ title, children }) => (
+    <div className="flex justify-between items-center mb-4">
+        <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+        {children}
+    </div>
+);
+
+// Custom Message Box
+const MessageBox = ({ message, onClose }) => {
+    return (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg p-6 shadow-xl max-w-sm w-full text-center">
+                <CheckCircle className="text-green-500 w-12 h-12 mx-auto mb-4" />
+                <p className="text-lg font-semibold text-gray-800 mb-4">{message}</p>
+                <button
+                    onClick={onClose}
+                    className="w-full bg-black text-white py-2 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    );
+};
+
+// Main CheckoutPage Component
 export default function CheckoutPage() {
-    const [discount, setDiscount] = useState("");
+    const [formData, setFormData] = useState({
+        email: "",
+        country: "Georgia",
+        firstName: "",
+        lastName: "",
+        address: "",
+        city: "",
+        postalCode: "",
+        cardNumber: "",
+        expirationDate: "",
+        securityCode: "",
+        cardHolderName: "",
+        saveInfo: false
+    });
+
+    const [showMessage, setShowMessage] = useState(false);
     const location = useLocation();
     const cartItem = location.state?.cartItem;
 
     if (!cartItem) {
-        return <div className="p-10 text-center">No items in checkout</div>;
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+                <div className="p-10 text-center font-medium text-gray-600 bg-white rounded-lg shadow-lg">
+                    Oops, there's nothing to check out. Please add items to your cart.
+                </div>
+            </div>
+        );
     }
 
     const subtotal = cartItem.price * cartItem.quantity;
     const shipping = 40;
     const total = subtotal + shipping;
 
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: type === 'checkbox' ? checked : value
+        }));
+    };
+
+    const handlePayNow = (e) => {
+        e.preventDefault();
+        // Add payment logic here
+        console.log("Processing payment for:", formData);
+        setShowMessage(true);
+    };
+
     return (
-        <div className="min-h-screen bg-white">
-            {/* Header */}
-
-            {/* Title */}
-            <h2 className="text-center font-semibold text-xl mt-6">FASCO Demo Checkout</h2>
-
-            {/* Main Section */}
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-10">
-                {/* Left Form */}
-                <div className="space-y-8">
-                    {/* Contact */}
-                    <div>
-                        <div className="flex justify-between items-center mb-2 text-sm">
-                            <h3 className="text-2xl font-semibold mb-2">Contact</h3>
-                            <span>Have an account?</span>
-                            <a href="#" className="text-blue-600 hover:underline">
-                                 Create Account
-                            </a>
-                        </div>
-                        <input
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+            {showMessage && (
+                <MessageBox
+                    message="Payment process completed successfully!"
+                    onClose={() => setShowMessage(false)}
+                />
+            )}
+            <div className="w-full max-w-6xl bg-white rounded-xl shadow-lg p-6 md:p-10 flex flex-col md:flex-row gap-10">
+                <div className="md:w-3/5 space-y-8">
+                    {/* Contact Section */}
+                    <section>
+                        <SectionHeader title="Contact Information">
+                            <span className="text-sm text-gray-500">
+                                Already have an account?{' '}
+                                <Link to="/login" className="text-blue-600 hover:underline">
+                                    Log in
+                                </Link>
+                            </span>
+                        </SectionHeader>
+                        <InputField
                             type="email"
-                            placeholder="Email Address"
-                            className="w-full border rounded-md p-2"
+                            name="email"
+                            placeholder="Email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            icon={Mail}
                         />
-                    </div>
+                    </section>
 
-                    {/* Delivery */}
-                    <div> 
-                        <h3 className="text-2xl flex justify-between font-semibold mb-2">Delivery</h3>
-                        <select className="w-full border rounded-md p-2 mb-3">
-                            <option>Country / Region</option>
+                    {/* Delivery Section */}
+                    <section>
+                        <SectionHeader title="Delivery" />
+                        <select
+                            name="country"
+                            value={formData.country}
+                            onChange={handleChange}
+                            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-black focus:outline-none transition-colors duration-200 mb-4"
+                        >
                             <option>Georgia</option>
                             <option>USA</option>
                             <option>Germany</option>
+                            <option>Other</option>
                         </select>
-
-                        <div className="grid grid-cols-2 gap-3 ">
-                            <input
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <InputField
                                 type="text"
+                                name="firstName"
                                 placeholder="First Name"
-                                className="border rounded-md p-2 cursor-pointer"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                icon={User}
                             />
-                            <input
+                            <InputField
                                 type="text"
+                                name="lastName"
                                 placeholder="Last Name"
-                                className="border rounded-md p-2 cursor-pointer"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                icon={User}
                             />
                         </div>
-
-                        <input
-                            type="text"
-                            placeholder="Address"
-                            className="w-full border rounded-md p-2 my-3 cursor-pointer"
-                        />
-
-                        <div className="grid grid-cols-2 gap-3">
-                            <input
+                        <div className="my-4">
+                            <InputField
                                 type="text"
+                                name="address"
+                                placeholder="Address"
+                                value={formData.address}
+                                onChange={handleChange}
+                                icon={MapPin}
+                            />
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <InputField
+                                type="text"
+                                name="city"
                                 placeholder="City"
-                                className="border rounded-md p-2 cursor-pointer"
+                                value={formData.city}
+                                onChange={handleChange}
+                                icon={Globe}
                             />
-                            <input
+                            <InputField
                                 type="text"
+                                name="postalCode"
                                 placeholder="Postal Code"
-                                className="border rounded-md p-2 cursor-pointer"
+                                value={formData.postalCode}
+                                onChange={handleChange}
+                                icon={Lock}
                             />
                         </div>
-
-                        <div className="flex items-center mt-3">
-                            <input type="checkbox" className="mr-2 cursor-pointer" />
-                            <span className="text-sm cursor-pointer">Save This Info For Future</span>
+                        <div className="flex items-center mt-4">
+                            <input
+                                type="checkbox"
+                                name="saveInfo"
+                                checked={formData.saveInfo}
+                                onChange={handleChange}
+                                className="mr-2"
+                            />
+                            <span className="text-sm text-gray-600">Save this information for later</span>
                         </div>
-                    </div>
+                    </section>
 
-
-
-
-
-                    {/* Payment */}
-                    <div>
-                        <h3 className="text-2xl flex justify-between  font-semibold mb-2 ">Payment</h3>
-                        <div className="relative mb-3 ">
-                            <select className="w-full border rounded-md p-2 cursor-pointer">
+                    {/* Payment Section */}
+                    <section>
+                        <SectionHeader title="Payment" />
+                        <div className="relative mb-4">
+                            <select
+                                className="w-full border border-gray-300 rounded-lg px-4 py-2 pl-12 focus:ring-2 focus:ring-black focus:outline-none transition-colors duration-200"
+                            >
                                 <option>Credit Card</option>
                                 <option>PayPal</option>
                             </select>
-                            <CreditCard className="absolute right-6 top-3 w-5 h-5 text-gray-500" />
+                            <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                         </div>
-
-                        <input
-                            type="text"
-                            placeholder="Card Number"
-                            className="w-full border rounded-md p-2 mb-3 cursor-pointer"
-                        />
-                        <div className="grid grid-cols-2 gap-3">
-                            <input
+                        <form onSubmit={handlePayNow} className="space-y-4">
+                            <InputField
                                 type="text"
-                                placeholder="Expiration Date"
-                                className="border rounded-md p-2 cursor-pointer"
+                                name="cardNumber"
+                                placeholder="Card Number"
+                                value={formData.cardNumber}
+                                onChange={handleChange}
+                                icon={CreditCard}
                             />
-                            <input
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <InputField
+                                    type="text"
+                                    name="expirationDate"
+                                    placeholder="Expiration Date (MM/YY)"
+                                    value={formData.expirationDate}
+                                    onChange={handleChange}
+                                    icon={Calendar}
+                                />
+                                <InputField
+                                    type="text"
+                                    name="securityCode"
+                                    placeholder="Security Code (CVC)"
+                                    value={formData.securityCode}
+                                    onChange={handleChange}
+                                    icon={Clipboard}
+                                />
+                            </div>
+                            <InputField
                                 type="text"
-                                placeholder="Security Code"
-                                className="border rounded-md p-2 cursor-pointer"
+                                name="cardHolderName"
+                                placeholder="Cardholder Name"
+                                value={formData.cardHolderName}
+                                onChange={handleChange}
+                                icon={User}
                             />
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Card Holder Name"
-                            className="w-full border rounded-md p-2 my-3 cursor-pointer"
-                        />
-                        <div className="flex items-center mb-3">
-                            <input type="checkbox" className="mr-2 cursor-pointer" />
-                            <span className="text-sm cursor-pointer">Save This Info For Future</span>
-                        </div>
 
-                        <button className="w-full bg-black text-white py-3 rounded-md cursor-pointer hover:bg-gray-900">
-                            Pay Now
-                        </button>
-                    </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200"
+                            >
+                                Pay
+                            </button>
+                        </form>
+                    </section>
                 </div>
 
-                {/* Right Summary */}
-                <div>
-                    <div className="border rounded-md p-4 space-y-4">
-                        <div className="text-2xl flex justify-between  space-x-4">
+                {/* Right Summary Section */}
+                <div className="md:w-2/5 p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <h3 className="text-2xl font-semibold mb-4 text-center">Order Summary</h3>
+                    <div className="space-y-4">
+                        <div className="flex items-center space-x-4 p-4 border rounded-lg bg-white shadow-sm">
                             <img
                                 src={cartItem.image}
                                 alt={cartItem.name}
-                                className="w-20 h-24 object-cover rounded-md"
+                                className="w-24 h-24 object-cover rounded-md flex-shrink-0"
                             />
                             <div className="flex-1">
-                                <h4 className="font-medium">{cartItem.name}</h4>
+                                <h4 className="font-medium text-lg">{cartItem.name}</h4>
                                 <p className="text-sm text-gray-500">Quantity: {cartItem.quantity}</p>
                             </div>
-                            <p className="font-medium">${cartItem.price}</p>
+                            <p className="font-medium text-lg">${cartItem.price}</p>
                         </div>
 
-                        <div className="space-y-1 text-sm text-gray-600">
+                        <div className="space-y-3 text-sm text-gray-600">
                             <div className="flex justify-between">
                                 <span>Subtotal</span>
                                 <span>${subtotal.toFixed(2)}</span>
@@ -164,7 +284,8 @@ export default function CheckoutPage() {
                                 <span>Shipping</span>
                                 <span>${shipping.toFixed(2)}</span>
                             </div>
-                            <div className="flex justify-between font-semibold text-black">
+                            <hr className="border-t border-gray-300 my-2" />
+                            <div className="flex justify-between font-bold text-black text-lg">
                                 <span>Total</span>
                                 <span>${total.toFixed(2)}</span>
                             </div>

@@ -1,7 +1,9 @@
+// src/pages/ForgotPasswordPage.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../common/AuthLayout";
 import InputField from "../common/InputField";
+import { PrimaryButton } from "../common/AuthButton";
 
 export default function ForgotPasswordPage() {
   const navigate = useNavigate();
@@ -24,13 +26,7 @@ export default function ForgotPasswordPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-
-        <button
-          type="submit"
-          className="w-full bg-white text-blue-800 border border-blue-500 rounded-lg py-2 font-semibold hover:bg-black hover:text-white"
-        >
-          Send Confirmation Code
-        </button>
+        <PrimaryButton>Send Confirmation Code</PrimaryButton>
       </form>
     </AuthLayout>
   );

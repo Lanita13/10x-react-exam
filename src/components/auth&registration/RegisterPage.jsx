@@ -1,9 +1,9 @@
-
-
+// src/pages/RegisterPage.jsx
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthLayout from "../common/AuthLayout";
 import InputField from "../common/InputField";
+import { PrimaryButton, LinkButton } from "../common/AuthButton";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -42,18 +42,8 @@ export default function RegisterPage() {
         />
 
         <div className="flex flex-col space-y-4">
-          <button
-            type="submit"
-            className="w-full bg-white text-blue-800 border border-blue-500 rounded-lg py-2 font-semibold hover:bg-black hover:text-white"
-          >
-            Sign Up
-          </button>
-          <Link
-            to="/"
-            className="w-full text-center bg-white text-blue-800 border border-blue-500 rounded-lg py-2 font-semibold hover:bg-black hover:text-white"
-          >
-            Already have an account? Sign In
-          </Link>
+          <PrimaryButton>Sign Up</PrimaryButton>
+          <LinkButton to="/">Already have an account? Sign In</LinkButton>
         </div>
       </form>
     </AuthLayout>

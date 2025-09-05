@@ -1,7 +1,9 @@
+// src/pages/NewPassword.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../common/AuthLayout";
 import InputField from "../common/InputField";
+import { PrimaryButton } from "../common/AuthButton";
 
 export default function NewPassword() {
   const navigate = useNavigate();
@@ -31,18 +33,8 @@ export default function NewPassword() {
           value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
         />
-
-        <button
-          type="submit"
-          className="w-full bg-white text-blue-800 border border-blue-500 rounded-lg py-2 font-semibold hover:bg-black hover:text-white"
-        >
-          Save Password
-        </button>
+        <PrimaryButton>Save Password</PrimaryButton>
       </form>
     </AuthLayout>
   );
 }
-
-
-
-

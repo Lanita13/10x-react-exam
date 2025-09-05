@@ -3,6 +3,10 @@ import { useState } from "react";
 import AuthLayout from "../common/AuthLayout";
 import InputField from "../common/InputField";
 
+import { PrimaryButton, LinkButton } from "../common/AuthButton";
+
+
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -10,6 +14,7 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // მომავალში აქ დაამატებ API-თან კავშირის ლოგიკას
     navigate("/home");
   };
 
@@ -33,30 +38,16 @@ export default function LoginPage() {
         />
 
         <div className="flex flex-col space-y-4">
-          <button
-            type="submit"
-            className="w-full bg-white text-blue-800 border border-blue-500 rounded-lg py-2 font-semibold hover:bg-black hover:text-white"
-          >
-            Sign in
-          </button>
-          <Link
-            to="/register"
-            className="w-full text-center bg-white text-blue-800 border border-blue-500 rounded-lg py-2 font-semibold hover:bg-black hover:text-white"
-          >
-            Register Now
-          </Link>
+          <PrimaryButton>Sign in</PrimaryButton>
+          <LinkButton to="/register">Register Now</LinkButton>
         </div>
       </form>
 
       <div className="flex justify-end items-center mt-6 text-sm">
-        <Link to="/forgot-password" className="text-blue-700">
+        <Link to="/forgot-password" className="text-blue-700 hover:underline">
           Forgot Password?
         </Link>
       </div>
     </AuthLayout>
   );
 }
-
-
-
-
