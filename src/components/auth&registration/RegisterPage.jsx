@@ -1,9 +1,8 @@
-// src/pages/RegisterPage.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../common/AuthLayout";
 import InputField from "../common/InputField";
-import { PrimaryButton, LinkButton } from "../common/AuthButton";
+import { PrimaryButton, TextLink } from "../common/AuthButton";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -40,10 +39,13 @@ export default function RegisterPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
+        
         <div className="flex flex-col space-y-4">
           <PrimaryButton>Sign Up</PrimaryButton>
-          <LinkButton to="/">Already have an account? Sign In</LinkButton>
+        </div>
+        <div className="flex justify-center text-sm text-gray-500 mt-8">
+          <span className="mr-1">Already have an account? </span>
+          <TextLink to="/">Login</TextLink>
         </div>
       </form>
     </AuthLayout>

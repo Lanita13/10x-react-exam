@@ -3,7 +3,7 @@ import { useState } from "react";
 import AuthLayout from "../common/AuthLayout";
 import InputField from "../common/InputField";
 
-import { PrimaryButton, LinkButton } from "../common/AuthButton";
+import { PrimaryButton, } from "../common/AuthButton";
 
 
 
@@ -14,7 +14,6 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // მომავალში აქ დაამატებ API-თან კავშირის ლოგიკას
     navigate("/home");
   };
 
@@ -39,7 +38,7 @@ export default function LoginPage() {
 
         <div className="flex flex-col space-y-4">
           <PrimaryButton>Sign in</PrimaryButton>
-          <LinkButton to="/register">Register Now</LinkButton>
+          <PrimaryButton to="/register">Register Now</PrimaryButton>
         </div>
       </form>
 

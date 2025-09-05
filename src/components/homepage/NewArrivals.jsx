@@ -17,6 +17,7 @@ const products = [
         rating: 5,
         reviews: 411,
         status: "Almost Sold Out",
+        category: "Women's Fashion"
     },
     {
         id: 2,
@@ -26,6 +27,7 @@ const products = [
         rating: 5,
         reviews: 411,
         status: "Almost Sold Out",
+        category: "Women's Fashion"
     },
     {
         id: 3,
@@ -35,6 +37,7 @@ const products = [
         rating: 5,
         reviews: 411,
         status: "Almost Sold Out",
+        category: "Women's Fashion"
     },
     {
         id: 4,
@@ -44,7 +47,7 @@ const products = [
         rating: 5,
         reviews: 411,
         status: "Almost Sold Out",
-
+        category: "Women's Fashion"
     },
     {
         id: 5,
@@ -54,6 +57,7 @@ const products = [
         rating: 5,
         reviews: 411,
         status: "Almost Sold Out",
+        category: "Women's Fashion"
     },
     {
         id: 6,
@@ -63,11 +67,65 @@ const products = [
         rating: 5,
         reviews: 411,
         status: "Almost Sold Out",
+        category: "Women's Fashion"
+    },
+    {
+        id: 7,
+        name: "White Suit Set",
+        image: "https://pikaso.cdnpk.net/private/production/1802815938/upload.png?token=exp=1778457600~hmac=4734278858faca482ade411580c42cea9c72b0b9441fbfdbe01f702d81b9249e",
+        price: 200,
+        rating: 5,
+        reviews: 611,
+        status: "Almost Sold Out",
+        category: "Men's Fashion"
+    },
+    {
+        id: 8,
+        name: "Bi-Color Linen Set",
+        image: "https://pikaso.cdnpk.net/private/production/2293065898/upload.png?token=exp=1778457600~hmac=77d10a72f276fc59f2aae2930a828ba9bc8c29bc2388dd1894c03187b8eeb7b2&preview=1",
+        price: 250,
+        rating: 5,
+        reviews: 811,
+        status: "Almost Sold Out",
+        category: "Men's Fashion"
+    },
+    {
+        id: 9,
+        name: "Black glasses",
+        image: "https://pikaso.cdnpk.net/private/production/2241430479/render.jpeg?token=exp=1778457600~hmac=aa61c4b43e63ca5898cdf4b21e48a8b8555f94dd10e138c3abf19efe2c827a34",
+        price: 150,
+        rating: 5,
+        reviews: 811,
+        status: "Almost Sold Out",
+        category: "Men Accessories"
+    },
+     {
+        id: 10,
+        name: "Green Linen Set",
+        image: "https://pikaso.cdnpk.net/private/production/1975024058/upload.png?token=exp=1778457600~hmac=7367706cf5c9e6cfb9b044d4ef5c0c50e47aeb78cc4808bbae6b74d8db916647",
+        price: 350,
+        rating: 5,
+        reviews: 911,
+        status: "Almost Sold Out",
+        category: "Men's Fashion"
+    },
+     {
+        id: 11,
+        name: "Gold Earring",
+        image: "https://pikaso.cdnpk.net/private/production/2055982912/upload.png?token=exp=1775001600~hmac=db4aad636acb0016426663733ee214ebdde22570814600c9d6fad6a2800a4641",
+        price: 90,
+        rating: 5,
+        reviews: 811,
+        status: "Almost Sold Out",
+        category: "Women Accessories"
     },
 ];
 
 const NewArrivals = () => {
     const [activeCategory, setActiveCategory] = useState("Women's Fashion");
+    const filteredProducts = products.filter(
+        (product) => product.category === activeCategory
+    );
 
     return (
         <section className="py-16 px-4 lg:px-20 bg-white">
@@ -84,9 +142,10 @@ const NewArrivals = () => {
                 {categories.map((cat, i) => (
                     <button
                         key={i}
-                        className={`px-5 py-2 rounded-md shadow-sm transition ${cat === "Women's Fashion"
-                            ? "bg-black text-white"
-                            : "bg-gray-100 text-gray-600"
+                        onClick={() => setActiveCategory(cat)}
+                        className={`px-5 py-2 rounded-md shadow-sm transition ${cat === activeCategory
+                                ? "bg-black text-white"
+                                : "bg-gray-100 text-gray-600"
                             }`}
                     >
                         {cat}
@@ -96,8 +155,7 @@ const NewArrivals = () => {
 
             {/* Products */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 flex items-center">
-
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                     <div
                         key={product.id}
                         className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition"
@@ -107,12 +165,10 @@ const NewArrivals = () => {
                             alt={product.name}
                             className="w-full h-72 object-cover rounded-lg mb-4"
                         />
-
                         <div className="flex items-center justify-between">
                             <h3 className="text-lg font-semibold text-gray-800">
                                 {product.name}
                             </h3>
-
                             <div className="flex">
                                 {Array(product.rating)
                                     .fill()
@@ -124,17 +180,12 @@ const NewArrivals = () => {
                             </div>
                         </div>
 
-
-
-
-                        <div className="flex flex-col items-start  mt-2">
+                        <div className="flex flex-col items-start mt-2">
                             <p className="text-sm text-gray-500">Allisson</p>
                             <p className=" text-sm text-gray-500 mt-1">
                                 ({product.reviews}) Customer Reviews
                             </p>
-
                         </div>
-
 
                         {/* Price + Status */}
                         <div className="flex justify-between items-center mt-3">

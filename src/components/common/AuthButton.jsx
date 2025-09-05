@@ -15,11 +15,12 @@ export const PrimaryButton = ({ children }) => (
   </button>
 );
 
-// Link ტიპის ღილაკი
-export const LinkButton = ({ to, children }) => (
+
+// ტექსტური ლინკი (რომელიც ღილაკს არ ჰგავს)
+export const TextLink = ({ to, children }) => (
   <Link
     to={to}
-    className={`${baseButtonClasses} bg-white text-blue-800 border border-blue-500 ${buttonHoverClasses}`}
+    className="text-blue-500 font-medium hover:underline transition-colors duration-300"
   >
     {children}
   </Link>
