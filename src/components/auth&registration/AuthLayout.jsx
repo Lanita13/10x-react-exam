@@ -1,6 +1,5 @@
-// src/common/AuthLayout.jsx
 
-import Logo from "./Logo";
+import Logo from "../common/Logo";
 
 export default function AuthLayout({ children, title, image }) {
   return (

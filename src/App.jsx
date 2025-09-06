@@ -12,6 +12,7 @@ const NewPassword = lazy(() => import("./components/auth&registration/NewPasswor
 // Common
 const MainLayout = lazy(() => import("./components/common/MainLayout"));
 const Footer = lazy(() => import("./components/common/Footer"));
+
 // Home
 const HomePage = lazy(() => import("./components/homepage/HomePage"));
 const NewArrivals = lazy(() => import("./components/homepage/NewArrivals"));
@@ -28,16 +29,15 @@ function App() {
     <Router>
       <Suspense fallback={<div className="text-center mt-20">Loading...</div>}>
         <Routes>
-          {/* Auth Pages (AuthLayout უკვე თავისით მართავს UI-ს) */}
+          {/* Auth Pages */}
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/confirmation-code" element={<ConfirmationCode />} />
           <Route path="/submit" element={<NewPassword />} />
-          
 
-              {/* Main Pages */ }
-              < Route
+          {/* Main Pages */}
+          <Route
             path="/home"
             element={
               <>
@@ -48,48 +48,15 @@ function App() {
               </>
             }
           />
-
-          <Route
-            path="/shop"
-            element={
-              <MainLayout>
-                <ShopPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/product/:id"
-            element={
-              <MainLayout>
-                <ProductDetail />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <MainLayout>
-                <ShoppingCart />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/checkout"
-            element={
-              <MainLayout>
-                <CheckoutPage />
-              </MainLayout>
-            }
-          />
+          <Route path="/shop" element={<MainLayout><ShopPage /></MainLayout>} />
+          <Route path="/product/:id" element={<MainLayout><ProductDetail /></MainLayout>} />
+          <Route path="/cart" element={<MainLayout><ShoppingCart /></MainLayout>} />
+          <Route path="/checkout" element={<MainLayout><CheckoutPage /></MainLayout>} />
 
           {/* 404 */}
           <Route
             path="*"
-            element={
-              <div className="p-6 text-center text-2xl font-bold">
-                404 | Page not found
-              </div>
-            }
+            element={<div className="p-6 text-center text-2xl font-bold">404 | Page not found</div>}
           />
         </Routes>
       </Suspense>

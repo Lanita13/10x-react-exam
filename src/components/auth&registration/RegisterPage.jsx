@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthLayout from "../common/AuthLayout";
+import AuthLayout from "../auth&registration/AuthLayout";
 import InputField from "../common/InputField";
 import { PrimaryButton, TextLink } from "../common/AuthButton";
 
