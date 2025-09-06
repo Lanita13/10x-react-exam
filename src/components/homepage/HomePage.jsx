@@ -1,10 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../common/Logo";
+import chanelLogo from "../../assets/icon/Chanel.png";
+import louisVuittonLogo from "../../assets/icon/Louis_Vuitton.png";
+import pradaLogo from "../../assets/icon/Prada.png";
+import denimLogo from "../../assets/icon/Denim.png";
 
 
 
 function HomePage() {
+    const brands = [
+        { name: "CHANEL", logo: chanelLogo },
+        { name: "LOUIS VUITTON", logo: louisVuittonLogo },
+        { name: "PRADA", logo: pradaLogo },
+        { name: "DENIM", logo: denimLogo },
+    ]
+
     return (
         <div className="font-sans">
             {/* Header */}
@@ -14,25 +25,25 @@ function HomePage() {
 
                 {/* Navigation */}
                 <nav className="space-x-8 text-gray-700">
-                    <Link to="/" className="">Home</Link>
+                    <Link to="/home" className="">Home</Link>
                     <Link to="/deals" className="">Deals</Link>
-                    <Link to="/new-arrivals" className="">New Arrivals</Link>
+                    <Link to="/home#new-arrivals" className="">New Arrivals</Link>
                     <Link to="/packages" className="">Packages</Link>
                     <Link to="/" className="">Sign in</Link>
                 </nav>
 
-                 
 
-                    <Link to="/register">
-                        <div className="bg-black text-white px-5 py-2 rounded-md hover:bg-gray-800 no-underline">
-                            Sign up
-                        </div>
-                    </Link>
+
+                <Link to="/register">
+                    <div className="bg-black text-white px-5 py-2 rounded-md hover:bg-gray-800 no-underline">
+                        Sign up
+                    </div>
+                </Link>
 
             </header>
 
             {/* Hero Section */}
-            <section className="grid grid-cols-3 gap-6 px-10 py-12">
+            <section className="grid grid-cols-3   gap-6 px-10 py-12">
                 {/* Left Image */}
                 <div className="bg-gray-100 rounded-xl overflow-hidden h-[600px]">
                     <img
@@ -86,9 +97,14 @@ function HomePage() {
             </section>
 
             {/* Brand Logos */}
-            <section className="flex justify-center items-center gap-14 py-10 border-t">
-                {["CHANEL", "LOUIS VUITTON", "PRADA", "CALVIN KLEIN", "DENIM"].map((brand) => (
-                    <span key={brand} className="text-2xl font-bold">{brand}</span>
+            <section className="flex justify-center items-center md:p-[60px] gap-22 ">
+                {brands.map((brand) => (
+                    <img
+                        key={brand.name}
+                        src={brand.logo}
+                        alt={brand.name}
+                        className="h-12 w-[220px] object-contain"
+                    />
                 ))}
             </section>
         </div>

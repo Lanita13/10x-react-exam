@@ -34,9 +34,10 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/confirmation-code" element={<ConfirmationCode />} />
           <Route path="/submit" element={<NewPassword />} />
+          
 
-          {/* Main Pages */}
-          <Route
+              {/* Main Pages */ }
+              < Route
             path="/home"
             element={
               <>
@@ -47,6 +48,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/shop"
             element={

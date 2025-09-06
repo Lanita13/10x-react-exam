@@ -109,7 +109,7 @@ export default function ProductDetail() {
 
                     {/* ზომები */}
                     <div className="mt-4">
-                        <p className="font-semibold text-gray-800 mb-2">ზომის არჩევა:</p>
+                        <p className="text-xl font-bold flex flex-wrap text-gray-800 mb-2">Size: </p>
                         <div className="flex flex-wrap gap-2">
                             {product.sizes.map((size) => (
                                 <button
@@ -126,7 +126,7 @@ export default function ProductDetail() {
 
                     {/* ფერები */}
                     <div className="mt-4">
-                        <p className="font-semibold text-gray-800 mb-2">ფერის არჩევა:</p>
+                        <p className="text-xl font-bold flex flex-wrap text-gray-800 mb-2">Color: </p>
                         <div className="flex flex-wrap gap-2">
                             {product.colors.map((color) => (
                                 <button
@@ -143,21 +143,31 @@ export default function ProductDetail() {
 
                     {/* რაოდენობის სელექტორი და Add to Cart ღილაკი */}
                     <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
-                        <div className="flex items-center border border-gray-300 rounded-full overflow-hidden">
-                            <button onClick={handleDecrease} className="px-5 py-3 text-lg text-gray-700 hover:bg-gray-100 transition">
-                                −
+                        <div className="flex items-center justify-between w-fit gap-2 border border-gray-300 rounded-md">
+                            <button
+                                onClick={handleDecrease}
+                                className="px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
+                                aria-label="Reduce quantity"
+                            >
+                                -
                             </button>
-                            <span className="px-5 py-3 text-lg font-semibold text-gray-900">{quantity}</span>
-                            <button onClick={handleIncrease} className="px-5 py-3 text-lg text-gray-700 hover:bg-gray-100 transition">
+                            <span className="text-center w-[30px] text-lg font-medium text-gray-600">
+                                {quantity}
+                            </span>
+                            <button
+                                onClick={handleIncrease}
+                                className="px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
+                                aria-label="Increase quantity"
+                            >
                                 +
                             </button>
                         </div>
 
                         <button
                             onClick={handleAddToCart}
-                            className="w-full sm:flex-1 bg-black text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-800 transition duration-300 ease-in-out"
+                            className="w-full sm:flex-1 bg-black text-white px-8 py-3 rounded-full font-semibold text-lg  hover:bg-gray-800 transition duration-300 ease-in-out"
                         >
-                            კალათაში დამატება
+                            Add to Cart
                         </button>
                     </div>
                 </div>

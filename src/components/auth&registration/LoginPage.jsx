@@ -38,7 +38,9 @@ export default function LoginPage() {
 
         <div className="flex flex-col space-y-4">
           <PrimaryButton>Sign in</PrimaryButton>
-          <PrimaryButton to="/register">Register Now</PrimaryButton>
+          <Link to="/register">
+            <PrimaryButton to="/register">Register Now</PrimaryButton>
+          </Link>
         </div>
       </form>
 
@@ -50,3 +52,4 @@ export default function LoginPage() {
     </AuthLayout>
   );
 }
+

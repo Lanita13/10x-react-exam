@@ -33,7 +33,7 @@ export default function ShoppingCart() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Title */}
-      <h1 className="text-3xl font-semibold text-center mt-10 mb-2">Shopping Cart</h1>
+      <h1 className="text-3xl font-semibold text-center mt-10 mb-8">Shopping Cart</h1>
 
       {/* Product Row */}
       <div className="border-t border-gray-300 py-6 grid grid-cols-4 items-center">
@@ -54,7 +54,7 @@ export default function ShoppingCart() {
         <div className="text-sm font-medium">${cartItem.price}</div>
 
         {/* Quantity control with improved design */}
-        <div className="flex items-center justify-between border border-gray-300 rounded-md">
+        <div className="flex items-center justify-between w-fit gap-2 border border-gray-300 rounded-md">
           <button
             onClick={handleDecrease}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
@@ -62,7 +62,7 @@ export default function ShoppingCart() {
           >
             -
           </button>
-          <span className="text-center text-lg font-medium text-gray-600">
+          <span className="text-center w-[30px] text-lg font-medium text-gray-600">
             {quantity}
           </span>
           <button
