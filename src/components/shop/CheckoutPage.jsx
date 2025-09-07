@@ -93,10 +93,19 @@ export default function CheckoutPage() {
 
     const handlePayNow = (e) => {
         e.preventDefault();
-        // Add payment logic here
-        console.log("Processing payment for:", formData);
-        setShowMessage(true);
+
+        // ვალიდაცია: ყველა ველი უნდა იყოს შევსებული (გარდა saveInfo checkbox-ისა)
+        const requiredFields = { ...formData };
+        delete requiredFields.saveInfo; // saveInfo optional-ია
+
+        if (Object.values(requiredFields).some(value => value === "")) {
+            alert("გთხოვთ, შეავსოთ ყველა ველი.");
+            return;
+        }
+
+       
     };
+
 
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -296,3 +305,5 @@ export default function CheckoutPage() {
         </div>
     );
 }
+
+
