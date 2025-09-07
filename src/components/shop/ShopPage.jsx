@@ -50,11 +50,11 @@ function ShopPage() {
       <div className="flex px-10 py-10">
         {/* Sidebar */}
         <aside className="w-1/4 pr-8">
-          <h2 className="text-xl font-bold mb-4">Filters</h2>
+          <h2 className="flex flex-wrap font-bold text-xl mb-4">Filters</h2>
 
           {/* Colors */}
           <div className="mb-6">
-            <h3 className="font-semibold mb-2 text-lg">Colors</h3>
+            <h3 className="flex flex-wrap font-semibold mb-2 text-lg">Colors</h3>
             <div className="flex flex-wrap gap-2">
               {colors.map((color) => (
                 <div
@@ -68,7 +68,7 @@ function ShopPage() {
 
           {/* Prices */}
           <div className="mb-6">
-            <h3 className="font-semibold text-lg mb-2">Prices</h3>
+            <h3 className="flex flex-wrap font-semibold text-lg mb-2">Prices</h3>
             <div className="flex flex-col gap-1 text-gray-500">
               {prices.map((price) => (
                 <button
@@ -84,7 +84,7 @@ function ShopPage() {
 
           {/* Brands */}
           <div className="mb-6">
-            <h3 className="font-semibold text-lg mb-2">Brands</h3>
+            <h3 className="flex flex-wrap font-semibold text-lg mb-2">Brands</h3>
             <div className="flex flex-col gap-1 text-gray-500">
               {brands.map((brand) => (
                 <button
@@ -100,7 +100,7 @@ function ShopPage() {
 
           {/* Collections */}
           <div className="mb-6">
-            <h3 className="font-semibold text-lg mb-2">Collections</h3>
+            <h3 className="flex flex-wrap font-semibold text-lg mb-2">Collections</h3>
             <div className="flex flex-col gap-1 text-gray-500">
               {collections.map((col) => (
                 <button
@@ -116,7 +116,7 @@ function ShopPage() {
 
           {/* Tags */}
           <div>
-            <h3 className="font-semibold text-lg mb-2">Tags</h3>
+            <h3 className="flex flex-wrap font-semibold text-lg mb-2">Tags</h3>
             <div className="flex flex-wrap gap-2 text-sm text-gray-500">
               {tags.map((tag) => (
                 <span
