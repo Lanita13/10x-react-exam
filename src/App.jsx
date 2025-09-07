@@ -24,6 +24,8 @@ const ProductDetail = lazy(() => import("./components/shop/ProductDetail"));
 const ShoppingCart = lazy(() => import("./components/shop/ShoppingCart"));
 const CheckoutPage = lazy(() => import("./components/shop/CheckoutPage"));
 
+
+
 function App() {
   return (
     <Router>
@@ -48,6 +50,7 @@ function App() {
               </>
             }
           />
+          
           <Route path="/shop" element={<MainLayout><ShopPage /></MainLayout>} />
           <Route path="/product/:id" element={<MainLayout><ProductDetail /></MainLayout>} />
           <Route path="/cart" element={<MainLayout><ShoppingCart /></MainLayout>} />

@@ -1,17 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-
-import redhat from "../../assets/img/Red-Hat.png";
-import sleevecoat from "../../assets/img/Sleeve-Coat.png";
-import metalshirt from "../../assets/img/Metal-Shirt.png";
-import denimhat from "../../assets/img/Denim-Hat.png";
-import minitop from "../../assets/img/Mini-Top.png";
-import oversizedjacket from "../../assets/img/Oversized-Jacket.png";
-import checkedsunglasses from "../../assets/img/Checked-Sunglasses.png";
-import exclusivejacket from "../../assets/img/Exclusive-Jacket.png";
-import blackdress from "../../assets/img/Black-Dress.png";
-
+import { productsData } from "../../data/products";
+import { getColorClass } from "../../utils/colors";
 
 function ShopPage() {
   const [selectedColor, setSelectedColor] = useState(null);
@@ -21,28 +11,15 @@ function ShopPage() {
   const [selectedTag, setSelectedTag] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const products = [
-    { id: 1, name: "Knotted Red Hat", price: 20, oldPrice: 25, image: redhat, sizes: ["S", "M"], colors: ["bg-red-500", "bg-black", "bg-gray-400"], brand: "Hermes", collection: ["New Arrivals", "All"], tags: ["Style", "Trending"] },
-    { id: 2, name: "Loose Metal Shirt", price: 70, image: sleevecoat, sizes: ["S", "L"], colors: ["bg-gray-700", "bg-green-600"], brand: "Prada", collection: ["Best Sellers", "All"], tags: ["Vintage", "Summer"] },
-    { id: 3, name: "Long Sleeve Coat", price: 95, oldPrice: "240.00", image: metalshirt, sizes: ["L", "M"], colors: ["bg-black","bg-green-500", "bg-yellow-500"], brand: "Gucci", collection: ["Best Sellers", "All"], tags: ["Modern", "Winter"] },
-    { id: 4, name: "Sexy Denim Hat", price: 25, image: denimhat, sizes: ["S", "M"], colors: ["bg-blue-500", "bg-black"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Style", "Summer"] },
-    { id: 5, name: "Linen Plain Top", price: 270, image: minitop, sizes: ["XS", "XL"], colors: ["bg-pink-500", "bg-yellow-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Style", "Summer"] },
-    { id: 6, name: "Oversized Jacket", price: 100, oldPrice: "140.00", image: oversizedjacket, sizes: ["S", "XS"], colors: ["bg-black", "bg-green-500","bg-gray-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Trending", "Vintage"] },
-    { id: 7, name: "Checked Sunglasses", price: 80, image: checkedsunglasses, sizes: ["XS", "M"], colors: ["bg-black", "bg-orange-500","bg-red-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Vintage", "Exclusive"] },
-    { id: 8, name: "Exclusive Jacket", price: 120, image: exclusivejacket, sizes: ["S", "M", "L"], colors: ["bg-black", "bg-purple-500"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Trending", "Style"] },
-    { id: 9, name: "Dotted Black Dress", price: 115, image: blackdress, sizes: ["L", "XL"], colors: ["bg-black", "bg-gray-400","bg-orange-500", "bg-blue-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Winter", "Exclusive"] },
-    { id: 10, name: "Long Sleeve Coat", price: 95, image: metalshirt, sizes: ["L", "M"], colors: ["bg-black", "bg-yellow-500"], brand: "Gucci", collection: ["Best Sellers", "All"], tags: ["Modern", "Winter"] },
-    { id: 11, name: "Sexy Denim Hat", price: 25, image: denimhat, sizes: ["S", "M"], colors: ["bg-blue-500", "bg-orange-500", "bg-black"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Style", "Summer"] },
-    { id: 12, name: "Linen Plain Top", price: 250, oldPrice: "350.00", image: minitop, sizes: ["XS", "XL"], colors: ["bg-pink-500", "bg-yellow-400"], brand: "Adidas", collection: ["Sale", "All"], tags: ["Style", "Summer"] },
-  ];
+  const productsPerPage = 6;
 
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = productsData.filter((product) => {
     const colorMatch = selectedColor ? product.colors.includes(selectedColor) : true;
     const priceMatch = selectedPrice
-      ? (selectedPrice === "0-50" && product.price >= 0 && product.price <= 50) ||
-      (selectedPrice === "50-100" && product.price > 50 && product.price <= 100) ||
-      (selectedPrice === "100-150" && product.price > 100 && product.price <= 150) ||
-      (selectedPrice === "150-200" && product.price > 150 && product.price <= 200)
+      ? (selectedPrice === "0-50" && product.price <= 50) ||
+        (selectedPrice === "50-100" && product.price > 50 && product.price <= 100) ||
+        (selectedPrice === "100-150" && product.price > 100 && product.price <= 150) ||
+        (selectedPrice === "150-200" && product.price > 150 && product.price <= 200)
       : true;
     const brandMatch = selectedBrand ? product.brand === selectedBrand : true;
     const collectionMatch = selectedCollection ? product.collection.includes(selectedCollection) : true;
@@ -50,13 +27,13 @@ function ShopPage() {
     return colorMatch && priceMatch && brandMatch && collectionMatch && tagMatch;
   });
 
-  const productsPerPage = 6;
-  const indexOfLast = currentPage * productsPerPage;
-  const indexOfFirst = indexOfLast - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const currentProducts = filteredProducts.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
 
-  const colors = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500", "bg-pink-500", "bg-black", "bg-gray-400", "bg-purple-500", "bg-orange-500"];
+  const colors = ["red", "blue", "green", "yellow", "pink", "black", "gray", "purple", "orange"];
   const prices = ["0-50", "50-100", "100-150", "150-200"];
   const brands = ["Hermes", "Prada", "Gucci", "Adidas"];
   const collections = ["All", "Best Sellers", "New Arrivals", "Sale"];
@@ -64,28 +41,25 @@ function ShopPage() {
 
   return (
     <div className="font-sans">
-      {/* Header */}
-
-
       {/* Breadcrumb */}
       <div className="px-10 py-4 text-gray-500">
         Home <span className="mx-2">/</span> <span className="text-black">Fashion</span>
       </div>
 
       {/* Content */}
-      <div className="flex  px-10 py-10">
+      <div className="flex px-10 py-10">
         {/* Sidebar */}
         <aside className="w-1/4 pr-8">
-          <h2 className="flex flex-wrap font-bold text-xl mb-4">Filters</h2>
+          <h2 className="text-xl font-bold mb-4">Filters</h2>
 
           {/* Colors */}
           <div className="mb-6">
-            <h3 className=" flex flex-wrap font-semibold mb-2 text-lg ">Colors</h3>
+            <h3 className="font-semibold mb-2 text-lg">Colors</h3>
             <div className="flex flex-wrap gap-2">
               {colors.map((color) => (
                 <div
                   key={color}
-                  className={`${color} w-6 h-6 rounded-full border cursor-pointer ${selectedColor === color ? "ring-2 ring-black" : ""}`}
+                  className={`${getColorClass(color)} w-6 h-6 rounded-full border cursor-pointer ${selectedColor === color ? "ring-2 ring-black" : ""}`}
                   onClick={() => setSelectedColor(selectedColor === color ? null : color)}
                 />
               ))}
@@ -94,15 +68,15 @@ function ShopPage() {
 
           {/* Prices */}
           <div className="mb-6">
-            <h3 className="flex flex-wrap font-semibold text-lg mb-2">Prices</h3>
+            <h3 className="font-semibold text-lg mb-2">Prices</h3>
             <div className="flex flex-col gap-1 text-gray-500">
               {prices.map((price) => (
                 <button
                   key={price}
-                  className={`text-left  py-1 cursor-pointer ${selectedPrice === price ? "bg-gray-300 p-[8px] rounded-lg  w-fit " : ""}`}
+                  className={`text-left py-1 cursor-pointer ${selectedPrice === price ? "bg-gray-300 p-2 rounded w-fit" : ""}`}
                   onClick={() => setSelectedPrice(selectedPrice === price ? null : price)}
                 >
-                  {price === "0-50" ? "$0–$50" : price === "50-100" ? "$50–$100" : price === "100-150" ? "$100–$150" : "$150–$200"}
+                  {price.replace("-", "–$")}
                 </button>
               ))}
             </div>
@@ -110,12 +84,12 @@ function ShopPage() {
 
           {/* Brands */}
           <div className="mb-6">
-            <h3 className="flex flex-wrap font-semibold  text-lg mb-2">Brands</h3>
-            <div className="flex flex-col text-gray-500  gap-1">
+            <h3 className="font-semibold text-lg mb-2">Brands</h3>
+            <div className="flex flex-col gap-1 text-gray-500">
               {brands.map((brand) => (
                 <button
                   key={brand}
-                  className={`text-left  py-1 cursor-pointer ${selectedBrand === brand ? "bg-gray-300 p-[8px] rounded-lg  w-fit" : ""}`}
+                  className={`text-left py-1 cursor-pointer ${selectedBrand === brand ? "bg-gray-300 p-2 rounded w-fit" : ""}`}
                   onClick={() => setSelectedBrand(selectedBrand === brand ? null : brand)}
                 >
                   {brand}
@@ -126,12 +100,12 @@ function ShopPage() {
 
           {/* Collections */}
           <div className="mb-6">
-            <h3 className="flex flex-wrap font-semibold text-lg mb-2">Collections</h3>
-            <div className="flex flex-col text-gray-500 gap-1">
+            <h3 className="font-semibold text-lg mb-2">Collections</h3>
+            <div className="flex flex-col gap-1 text-gray-500">
               {collections.map((col) => (
                 <button
                   key={col}
-                  className={`text-left  py-1 cursor-pointer ${selectedCollection === col ? "bg-gray-300 p-[8px] rounded-lg  w-fit" : ""}`}
+                  className={`text-left py-1 cursor-pointer ${selectedCollection === col ? "bg-gray-300 p-2 rounded w-fit" : ""}`}
                   onClick={() => setSelectedCollection(selectedCollection === col ? null : col)}
                 >
                   {col}
@@ -142,12 +116,12 @@ function ShopPage() {
 
           {/* Tags */}
           <div>
-            <h3 className="flex flex-wrap font-semibold text-lg mb-2">Tags</h3>
-            <div className="flex flex-wrap text-gray-500 gap-2 text-sm ">
+            <h3 className="font-semibold text-lg mb-2">Tags</h3>
+            <div className="flex flex-wrap gap-2 text-sm text-gray-500">
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className={` py-1 cursor-pointer ${selectedTag === tag ? "bg-gray-300 p-[8px] rounded-lg  w-fit" : "text-gray-600"}`}
+                  className={`py-1 cursor-pointer ${selectedTag === tag ? "bg-gray-300 p-2 rounded w-fit" : "text-gray-600"}`}
                   onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
                 >
                   {tag}
@@ -159,10 +133,7 @@ function ShopPage() {
 
         {/* Product Grid */}
         <main className="w-3/4">
-          <div className="flex justify-between items-center text-lg  mb-6">
-            <h2 className=" flex flex-wrap text-xl font-bold">Products</h2>
-          </div>
-
+          <h2 className="text-xl font-bold mb-6">Products</h2>
           <div className="grid grid-cols-3 gap-6">
             {currentProducts.map((product) => (
               <Link
@@ -180,14 +151,12 @@ function ShopPage() {
                   <div className="flex gap-2 items-center">
                     <p className="text-gray-800 font-semibold">${product.price}</p>
                     {product.oldPrice && (
-                      <span className="line-through text-gray-500 text-sm">
-                        ${product.oldPrice}
-                      </span>
+                      <span className="line-through text-gray-500 text-sm">${product.oldPrice}</span>
                     )}
                   </div>
                   <div className="flex gap-2 mt-2">
                     {product.colors.map((c, idx) => (
-                      <div key={idx} className={`${c} w-5 h-5 rounded-full border`} />
+                      <div key={idx} className={`${getColorClass(c)} w-5 h-5 rounded-full border`} />
                     ))}
                   </div>
                 </div>
@@ -200,7 +169,7 @@ function ShopPage() {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
-                className={`px-4 py-2   cursor-pointer ${currentPage === page ? "bg-gray-200 text-black p-[8px]   w-fit" : "bg-white"}`}
+                className={`px-4 py-2 cursor-pointer ${currentPage === page ? "bg-gray-200 text-black p-2 w-fit" : "bg-white"}`}
                 onClick={() => setCurrentPage(page)}
               >
                 {page}
