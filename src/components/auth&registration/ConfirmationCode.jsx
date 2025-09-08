@@ -11,7 +11,6 @@ export default function ConfirmationCode() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // აქ უნდა იყოს API-ით კოდის ვალიდაციის ლოგიკა
     navigate("/submit");
   };
 

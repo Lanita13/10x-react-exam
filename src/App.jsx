@@ -24,12 +24,16 @@ const ProductDetail = lazy(() => import("./components/shop/ProductDetail"));
 const ShoppingCart = lazy(() => import("./components/shop/ShoppingCart"));
 const CheckoutPage = lazy(() => import("./components/shop/CheckoutPage"));
 
-
-
 function App() {
   return (
     <Router>
-      <Suspense fallback={<div className="text-center mt-20">Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-screen">
+            <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        }
+      >
         <Routes>
           {/* Auth Pages */}
           <Route path="/" element={<LoginPage />} />
@@ -50,7 +54,6 @@ function App() {
               </>
             }
           />
-          
           <Route path="/shop" element={<MainLayout><ShopPage /></MainLayout>} />
           <Route path="/product/:id" element={<MainLayout><ProductDetail /></MainLayout>} />
           <Route path="/cart" element={<MainLayout><ShoppingCart /></MainLayout>} />
@@ -68,3 +71,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

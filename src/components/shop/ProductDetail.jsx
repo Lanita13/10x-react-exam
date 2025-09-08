@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Star } from "lucide-react";
-import { productsData } from "../../data/products"; // array სტრუქტურა
-import { getColorClass } from "../../utils/colors"; // centralized color mapping
+import { productsData } from "../../data/products"; 
+import { getColorClass } from "../../utils/colors"; 
 
 export default function ProductDetail() {
     const { id } = useParams();

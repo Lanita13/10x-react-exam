@@ -84,7 +84,7 @@ export default function InputField({
   const handleChange = (e) => {
     let val = e.target.value;
 
-    // სიმბოლოების შეზღუდვა
+ 
     if (validationType === "cvc") {
       val = val.replace(/\D/g, "").slice(0, 3);
     }

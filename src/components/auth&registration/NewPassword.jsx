@@ -1,4 +1,4 @@
-// src/pages/NewPassword.jsx
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../auth&registration/AuthLayout";

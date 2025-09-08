@@ -6,7 +6,7 @@ export default function AuthLayout({ children, title, image }) {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
         
-        {/* მარცხენა მხარე: სურათი */}
+       
         <div className="hidden md:block">
           <img
             src={image}
@@ -15,7 +15,7 @@ export default function AuthLayout({ children, title, image }) {
           />
         </div>
 
-        {/* მარჯვენა მხარე: კონტენტი */}
+ 
         <div className="p-10 flex flex-col justify-center">
           <div className="flex justify-center mb-6">
             <Logo />

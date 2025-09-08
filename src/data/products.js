@@ -1,4 +1,4 @@
-// src/data/products.js
+
 import redhat from "../assets/img/Red-Hat.png";
 import sleevecoat from "../assets/img/Sleeve-Coat.png";
 import metalshirt from "../assets/img/Metal-Shirt.png";

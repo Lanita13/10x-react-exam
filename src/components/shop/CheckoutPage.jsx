@@ -14,7 +14,7 @@ import {
     Clipboard,
     CheckCircle,
 } from "lucide-react";
-import InputField from "../common/InputField"; // უკვე არსებული კომპონენტი
+import InputField from "../common/InputField";
 
 // Reusable SectionHeader Component
 const SectionHeader = ({ title, children }) => (
@@ -88,7 +88,7 @@ export default function CheckoutPage() {
     const handlePayNow = (e) => {
         e.preventDefault();
 
-        // აუცილებელი ველები
+       
         const requiredFields = { ...formData };
         delete requiredFields.saveInfo;
 

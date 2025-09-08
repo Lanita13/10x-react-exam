@@ -13,7 +13,7 @@ export const PrimaryButton = ({ children, ariaLabel }) => (
   </button>
 );
 
-// TextLink-ს დაემატა ariaLabel ატრიბუტი ხელმისაწვდომობისთვის
+
 export const TextLink = ({ to, children, ariaLabel }) => (
   <Link
     to={to}
