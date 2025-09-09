@@ -22,59 +22,59 @@ export default function InputField({
     let errorMsg = "";
     const trimmedVal = val.trim();
 
-    // სავალდებულო ველის ვალიდაცია
+    // Required field validation
     if (required && !trimmedVal) {
-      errorMsg = "ველი სავალდებულოა";
+      errorMsg = "The field is required";
     }
 
-    // Email ვალიდაცია
+    // Email validation
     if (!errorMsg && validationType === "email") {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (trimmedVal && !emailRegex.test(trimmedVal)) {
-        errorMsg = "შეიყვანეთ სწორი ელ-ფოსტა";
+        errorMsg = "Please enter a valid email address.";
       }
     }
 
-    // CVC ვალიდაცია
+    // CVC validation
     if (!errorMsg && validationType === "cvc") {
       const cvcNumber = trimmedVal.replace(/\s+/g, "");
       if (!/^\d{3}$/.test(cvcNumber)) {
-        errorMsg = "CVC უნდა შედგებოდეს 3 ციფრისგან";
+        errorMsg = "CVC must consist of 3 digits.";
       }
     }
 
-    // ბარათის ნომრის ვალიდაცია
+    // Card number validation
     if (!errorMsg && validationType === "card") {
       const cardNumber = trimmedVal.replace(/\s+/g, "");
       if (cardNumber.length > 16) {
-        errorMsg = "ბარათის ნომერი უნდა შედგებოდეს მაქსიმუმ 16 ციფრისგან";
+        errorMsg = "The card number must consist of a maximum of 16 digits";
       } else if (!/^\d+$/.test(cardNumber)) {
-        errorMsg = "ბარათის ნომერი უნდა შედგებოდეს მხოლოდ ციფრებისგან";
+        errorMsg = "The card number must consist of numbers only";
       }
     }
 
-    // თარიღის ვალიდაცია
+    // Date validation
     if (!errorMsg && validationType === "date") {
       const dateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
       if (!dateRegex.test(trimmedVal)) {
-        errorMsg = "შეიყვანეთ თარიღი სწორი ფორმატით (მაგ: 12/27)";
+        errorMsg = "Enter the date in the correct format (e.g. 12/27)";
       }
     }
 
-    // საფოსტო კოდის ვალიდაცია
+    // Postal code validation
     if (!errorMsg && validationType === "postalCode") {
       const postalCodeNumber = trimmedVal.replace(/\s+/g, "");
       if (!/^\d{4,6}$/.test(postalCodeNumber)) {
-        errorMsg = "საფოსტო კოდი უნდა შედგებოდეს 4-დან 6-მდე ციფრისგან";
+        errorMsg = "Postal code must consist of 4 to 6 digits";
       }
     }
 
-    // მისამართის ვალიდაცია (ასოები და ციფრები)
+    // Address validation (letters and numbers)
     if (!errorMsg && validationType === "address") {
       if (!/^[a-zA-Z0-9\s]+$/.test(trimmedVal)) {
-        errorMsg = "მისამართი უნდა შეიცავდეს მხოლოდ ასოებსა და ციფრებს";
+        errorMsg = "Address must contain only letters and numbers";
       } else if (trimmedVal.length < 5) {
-        errorMsg = "მისამართი უნდა შედგებოდეს მინიმუმ 5 სიმბოლოსგან";
+        errorMsg = "Address must be at least 5 characters long";
       }
     }
 
@@ -84,7 +84,7 @@ export default function InputField({
   const handleChange = (e) => {
     let val = e.target.value;
 
- 
+
     if (validationType === "cvc") {
       val = val.replace(/\D/g, "").slice(0, 3);
     }
@@ -140,9 +140,8 @@ export default function InputField({
           value={value}
           onChange={handleChange}
           onBlur={() => validate(value)}
-          className={`${baseClasses} ${Icon ? "pl-12" : ""} ${
-            error ? "border-red-500 focus:ring-red-500" : ""
-          }`}
+          className={`${baseClasses} ${Icon ? "pl-12" : ""} ${error ? "border-red-500 focus:ring-red-500" : ""
+            }`}
         />
       </div>
       {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
